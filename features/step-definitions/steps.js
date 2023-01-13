@@ -1,12 +1,12 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-
+import { baseUrls } from '../constant/pageURL.js';
 import HomePage from '../pageObjects/home.page.js';
-import Page from '../pageObjects/page.js';
 
-Given(/^I am on the (\w+) page$/, async (page) => {
-  Page.open(baseUrls.homePage);
+Given(/^I am on the home page$/, async () => {
+  HomePage.open(baseUrls.homePage);
+
+  // Validate if we are in correct web page
+  await expect(HomePage.carusel).toBePresent();
+  await expect(HomePage.imgLogo).toBePresent();
+  await expect(HomePage.btnSignIn).toBePresent();
 });
-
-When(/^I login with (\w+) and (.+)$/, async (username, password) => {});
-
-Then(/^I should see a flash message saying (.*)$/, async (message) => {});
